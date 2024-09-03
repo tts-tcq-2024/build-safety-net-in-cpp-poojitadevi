@@ -1,5 +1,6 @@
 #include "Soundex.h"
 #include <cctype>
+#include <unordered_map>
 
 std::string Soundex::generate(const std::string& name) const {
     if (name.empty()) return "0000";  // 1 decision point
