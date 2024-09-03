@@ -10,3 +10,7 @@ TEST(SoundexTest, HandlesSingleCharacter) {
     EXPECT_EQ(generateSoundex("A"), "A000");
 }
 
+TEST(SoundexTest, HandlelessFourCharacter){
+    EXPECT_EQ(generateSoundex("Bounce"), "B520");
+}
+
