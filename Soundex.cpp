@@ -4,7 +4,7 @@
 
 std::string Soundex::generate(const std::string& name) const {
     // Return default Soundex code for an empty input
-    if (name.empty()) return "0000";
+    if (name.empty()) return "";
 
     // Initialize the Soundex code with the first letter
     std::string soundex(1, toupper(name[0]));
