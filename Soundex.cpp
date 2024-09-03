@@ -1,36 +1,43 @@
 #include "Soundex.h"
 #include <cctype>
+#include <unordered_map>
 
-char getSoundexCode(char c) {
-    c = toupper(c);
-    switch (c) {
-        case 'B': case 'F': case 'P': case 'V': return '1';
-        case 'C': case 'G': case 'J': case 'K': case 'Q': case 'S': case 'X': case 'Z': return '2';
-        case 'D': case 'T': return '3';
-        case 'L': return '4';
-        case 'M': case 'N': return '5';
-        case 'R': return '6';
-        default: return '0'; // For A, E, I, O, U, H, W, Y
-    }
-}
-
-std::string generateSoundex(const std::string& name) {
+// Generates the Soundex code for a given name
+std::string Soundex::generate(const std::string& name) const {
     if (name.empty()) return "";
 
     std::string soundex(1, toupper(name[0]));
-    char prevCode = getSoundexCode(name[0]);
+    char prevCode = getCode(soundex[0]);
 
-    for (size_t i = 1; i < name.length() && soundex.length() < 4; ++i) {
-        char code = getSoundexCode(name[i]);
-        if (code != '0' && code != prevCode) {
-            soundex += code;
-            prevCode = code;
-        }
+    for (size_t i = 1; i < name.length(); ++i) {
+        char code = getCode(name[i]);
+        if (code == '0' || code == prevCode) continue;
+        soundex += code;
+        if (soundex.length() == 4) break;
+        prevCode = code;
     }
 
-    while (soundex.length() < 4) {
-        soundex += '0';
-    }
+    return padToFourDigits(soundex);
+}
 
-    return soundex;
+// Returns the Soundex code for a single character
+char Soundex::getCode(char c) const {
+    static const std::unordered_map<char, char> soundexMap = {
+        {'B', '1'}, {'F', '1'}, {'P', '1'}, {'V', '1'},
+        {'C', '2'}, {'G', '2'}, {'J', '2'}, {'K', '2'},
+        {'Q', '2'}, {'S', '2'}, {'X', '2'}, {'Z', '2'},
+        {'D', '3'}, {'T', '3'},
+        {'L', '4'},
+        {'M', '5'}, {'N', '5'},
+        {'R', '6'}
+    };
+
+    c = toupper(c);
+    auto it = soundexMap.find(c);
+    return it != soundexMap.end() ? it->second : '0';
+}
+
+// Pads the Soundex code to 4 digits with '0'
+std::string Soundex::padToFourDigits(const std::string& code) const {
+    return code + std::string(4 - code.length(), '0');
 }
