@@ -3,23 +3,28 @@
 #include <unordered_map>
 
 std::string Soundex::generate(const std::string& name) const {
-    if (name.empty()) return "0000";  // 1 decision point
+    // Return default Soundex code for an empty input
+    if (name.empty()) return "0000";
 
+    // Initialize the Soundex code with the first letter
     std::string soundex(1, toupper(name[0]));
     char prevCode = getCode(soundex[0]);
 
-    for (size_t i = 1; i < name.length(); ++i) {  // 1 decision point (loop)
+    // Iterate through the rest of the name
+    for (size_t i = 1; i < name.length(); ++i) {
         char code = getCode(name[i]);
+        // Append the new code if it is different from the previous code and not '0'
         if (code != '0' && code != prevCode) {
             soundex += code;
-            if (soundex.length() == 4) break;
             prevCode = code;
         }
+        // Stop if the Soundex code length is 4
+        if (soundex.length() == 4) break;
     }
 
-    return soundex + "0000";  // Simplified padding logic
+    // Pad with '0' to ensure the Soundex code is exactly 4 characters long
+    return soundex + std::string(4 - soundex.length(), '0');
 }
-
 char Soundex::getCode(char c) const {
     // Create a static map for character to Soundex code mapping
     static const std::unordered_map<char, char> soundexMap = {
