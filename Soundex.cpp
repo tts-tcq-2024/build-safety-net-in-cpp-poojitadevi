@@ -2,25 +2,24 @@
 #include <cctype>
 #include <unordered_map>
 
-// Generates the Soundex code for a given name
 std::string Soundex::generate(const std::string& name) const {
-    if (name.empty()) return "";
+    if (name.empty()) return "0000";  // Always return a default value for an empty string
 
     std::string soundex(1, toupper(name[0]));
     char prevCode = getCode(soundex[0]);
 
     for (size_t i = 1; i < name.length(); ++i) {
         char code = getCode(name[i]);
-        if (code == '0' || code == prevCode) continue;
-        soundex += code;
+        if (code != '0' && code != prevCode) {
+            soundex += code;
+            prevCode = code;
+        }
         if (soundex.length() == 4) break;
-        prevCode = code;
     }
 
     return padToFourDigits(soundex);
 }
 
-// Returns the Soundex code for a single character
 char Soundex::getCode(char c) const {
     static const std::unordered_map<char, char> soundexMap = {
         {'B', '1'}, {'F', '1'}, {'P', '1'}, {'V', '1'},
@@ -37,7 +36,6 @@ char Soundex::getCode(char c) const {
     return it != soundexMap.end() ? it->second : '0';
 }
 
-// Pads the Soundex code to 4 digits with '0'
 std::string Soundex::padToFourDigits(const std::string& code) const {
     return code + std::string(4 - code.length(), '0');
 }
