@@ -9,8 +9,8 @@ std::string Soundex::generateCode(const std::string& name) const {
     
     // Iterate through the rest of the name
     processRemainingCharacters(name, soundex, prevCode);
-    
-    return soundex;
+    // Apply padding to ensure the Soundex code is exactly 4 characters long
+    return applyPadding(soundex);
 }
 char Soundex::getCode(char c) const {
     // Create a static map for character to Soundex code mapping
@@ -36,9 +36,7 @@ std::string Soundex::generateSoundexCode(const std::string& name) const {
    else
     {
        //func call to generate sonudex code
-       std::string Code = generateCode(name);
-       // Apply padding to ensure the Soundex code is exactly 4 characters long
-        applyPadding(Code);
+       generateCode(name);
     }
 }
 std::string Soundex::initializeSoundex(const std::string& name) const {
