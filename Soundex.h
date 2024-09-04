@@ -5,14 +5,13 @@
 
 class Soundex {
 public:
-    // Generates the Soundex code for a given name
-    std::string generateCode(const std::string& name) const;
+    // Generates the Soundex code for a given name    
+  std::string generateSoundexCode(const std::string& name) const; // Method for empty name check
 
 private:
     // Returns the Soundex code for a single character
     char getCode(char c) const;
-
-   std::string generateSoundexCode(const std::string& name) const; // Method for empty name check
+    std::string generateCode(const std::string& name) const; // Method to generate code
     std::string applyPadding(const std::string& soundex) const; // Method for padding
 };
 
