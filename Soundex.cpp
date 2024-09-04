@@ -18,9 +18,7 @@ std::string Soundex::generateCode(const std::string& name) const {
         // Stop if the Soundex code length is 4
         if (soundex.length() == 4) break;
     }
-
- // Apply padding to ensure the Soundex code is exactly 4 characters long
-    return applyPadding(soundex);
+    return soundex;
 }
 char Soundex::getCode(char c) const {
     // Create a static map for character to Soundex code mapping
@@ -46,7 +44,9 @@ std::string Soundex::generateSoundexCode(const std::string& name) const {
    else
     {
        //func call to generate sonudex code
-       generateCode(name);
+       std::string Code = generateCode(name);
+       // Apply padding to ensure the Soundex code is exactly 4 characters long
+        applyPadding(Code);
     }
 }
 
