@@ -25,3 +25,7 @@ TEST_F(SoundexTest, HandlesThreeCharacters) {
 TEST_F(SoundexTest, HandlesAllZeroCodes) {
     EXPECT_EQ(soundex.generateCode("Who"), "W000");
 }
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters) {
+    EXPECT_EQ(soundex.generateCode("Scientist"), "S243");
+}
