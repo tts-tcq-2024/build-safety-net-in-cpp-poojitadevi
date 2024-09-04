@@ -12,7 +12,7 @@ private:
     // Returns the Soundex code for a single character
     char getCode(char c) const;
 
-   std::string handleEmptyName(const std::string& name) const; // Method for empty name check
+   std::string generateSoundexCode(const std::string& name) const; // Method for empty name check
     std::string applyPadding(const std::string& soundex) const; // Method for padding
 };
 
