@@ -3,8 +3,12 @@
 #include <unordered_map>
 
 std::string Soundex::generateCode(const std::string& name) const {
+    // Check for an empty string input
+    if (name.empty()) {
+        return "";
+    }
     // Initialize the Soundex code with the first letter
-   std::string soundex = initializeSoundex(name);
+    std::string soundex = initializeSoundex(name);
     char prevCode = getCode(soundex[0]);
     
     // Iterate through the rest of the name
@@ -30,15 +34,7 @@ char Soundex::getCode(char c) const {
     auto it = soundexMap.find(c);
     return (it != soundexMap.end()) ? it->second : '0'; // Return '0' if character is not found
 }
-std::string Soundex::generateSoundexCode(const std::string& name) const {
-    if(name.empty()) 
-       return "";
-   else
-    {
-       //func call to generate sonudex code
-       generateCode(name);
-    }
-}
+
 std::string Soundex::initializeSoundex(const std::string& name) const {
     return std::string(1, toupper(name[0]));
 }
