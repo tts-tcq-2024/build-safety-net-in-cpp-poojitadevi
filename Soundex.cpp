@@ -2,11 +2,7 @@
 #include <cctype>
 #include <unordered_map>
 
-std::string Soundex::generate(const std::string& name) const {
-   // Check for empty name using the new method
-    std::string result = handleEmptyName(name);
-    if (!result.empty()) return result;
-    
+std::string Soundex::generateCode(const std::string& name) const {
     // Initialize the Soundex code with the first letter
     std::string soundex(1, toupper(name[0]));
     char prevCode = getCode(soundex[0]);
@@ -44,8 +40,14 @@ char Soundex::getCode(char c) const {
     auto it = soundexMap.find(c);
     return (it != soundexMap.end()) ? it->second : '0'; // Return '0' if character is not found
 }
-std::string Soundex::handleEmptyName(const std::string& name) const {
-    return name.empty() ? "0000" : "";
+std::string Soundex::generateSoundexCode(const std::string& name) const {
+    if(name.empty()) 
+       return "";
+   else
+    {
+       //func call to generate sonudex code
+       generateCode(name);
+    }
 }
 
 std::string Soundex::applyPadding(const std::string& soundex) const {
