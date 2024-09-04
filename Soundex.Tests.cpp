@@ -47,7 +47,7 @@ TEST_F(SoundexTest, HandlesAllCodeCharacters4) {
 }
 
 TEST_F(SoundexTest, HandlesAllCodeCharacters5) {
-    EXPECT_EQ(soundex.generateCode("bpztlmr"), "B123");
+    EXPECT_EQ(soundex.generateCode("rpztlmr"), "R123");
 }
 
 TEST_F(SoundexTest, HandlesAllCodeCharacters6) {
