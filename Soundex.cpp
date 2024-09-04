@@ -4,20 +4,12 @@
 
 std::string Soundex::generateCode(const std::string& name) const {
     // Initialize the Soundex code with the first letter
-    std::string soundex(1, toupper(name[0]));
+   std::string soundex = initializeSoundex(name);
     char prevCode = getCode(soundex[0]);
-
+    
     // Iterate through the rest of the name
-    for (size_t i = 1; i < name.length(); ++i) {
-        char code = getCode(name[i]);
-        // Append the new code if it is different from the previous code and not '0'
-        if (code != '0' && code != prevCode) {
-            soundex += code;
-            prevCode = code;
-        }
-        // Stop if the Soundex code length is 4
-        if (soundex.length() == 4) break;
-    }
+    processRemainingCharacters(name, soundex, prevCode);
+    
     return soundex;
 }
 char Soundex::getCode(char c) const {
@@ -49,7 +41,25 @@ std::string Soundex::generateSoundexCode(const std::string& name) const {
         applyPadding(Code);
     }
 }
+std::string Soundex::initializeSoundex(const std::string& name) const {
+    return std::string(1, toupper(name[0]));
+}
 
+void Soundex::processRemainingCharacters(const std::string& name, std::string& soundex, char& prevCode) const {
+    for (size_t i = 1; i < name.length(); ++i) {
+        char code = getCode(name[i]);
+        appendCodeIfValid(code, prevCode, soundex);
+
+        if (soundex.length() == 4) break;
+    }
+}
+
+void Soundex::appendCodeIfValid(char code, char& prevCode, std::string& soundex) const {
+    if (code != '0' && code != prevCode) {
+        soundex += code;
+        prevCode = code;
+    }
+}
 std::string Soundex::applyPadding(const std::string& soundex) const {
     // Return the soundex with padding if needed
     return soundex.length() < 4 ? soundex + std::string(4 - soundex.length(), '0') : soundex;
