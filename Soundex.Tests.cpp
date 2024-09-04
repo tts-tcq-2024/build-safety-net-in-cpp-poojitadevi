@@ -29,3 +29,7 @@ TEST_F(SoundexTest, HandlesAllZeroCodes) {
 TEST_F(SoundexTest, HandlesAllCodeCharacters) {
     EXPECT_EQ(soundex.generateCode("Smart"), "S563");
 }
+
+TEST_F(SoundexTest, HandlesRepititiveCharacters) {
+    EXPECT_EQ(soundex.generateCode("Assessment"), "A253");
+}
