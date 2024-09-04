@@ -12,8 +12,8 @@ private:
     // Returns the Soundex code for a single character
     char getCode(char c) const;
 
-    // Pads the Soundex code to 4 digits with '0'
-    std::string padToFourDigits(const std::string& code) const;
+   std::string handleEmptyName(const std::string& name) const; // Method for empty name check
+    std::string applyPadding(const std::string& soundex) const; // Method for padding
 };
 
 #endif // SOUNDEX_H
