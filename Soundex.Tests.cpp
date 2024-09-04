@@ -27,5 +27,5 @@ TEST_F(SoundexTest, HandlesAllZeroCodes) {
 }
 
 TEST_F(SoundexTest, HandlesAllCodeCharacters) {
-    EXPECT_EQ(soundex.generateCode("Smooth"), "S530");
+    EXPECT_EQ(soundex.generateCode("Smart"), "S563");
 }
