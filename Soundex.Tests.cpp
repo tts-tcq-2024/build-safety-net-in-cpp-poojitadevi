@@ -15,5 +15,5 @@ TEST_F(SoundexTest, HandlesSingleCharacter) {
 }
 
 TEST_F(SoundexTest, HandlesLessThanFourCharacters) {
-    EXPECT_EQ(soundex.generateSoundexCode("Bounce"), "B520");
+    EXPECT_EQ(soundex.generateCode("Bounce"), "B520");
 }
