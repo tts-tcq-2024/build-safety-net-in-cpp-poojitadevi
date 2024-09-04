@@ -26,10 +26,14 @@ TEST_F(SoundexTest, HandlesAllZeroCodes) {
     EXPECT_EQ(soundex.generateCode("Who"), "W000");
 }
 
-TEST_F(SoundexTest, HandlesAllCodeCharacters) {
+TEST_F(SoundexTest, HandlesAllCodeCharacters1) {
     EXPECT_EQ(soundex.generateCode("Smart"), "S563");
 }
 
 TEST_F(SoundexTest, HandlesRepititiveCharacters) {
     EXPECT_EQ(soundex.generateCode("Assessment"), "A253");
+}
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters2) {
+    EXPECT_EQ(soundex.generateCode("Tracking"), "T625");
 }
