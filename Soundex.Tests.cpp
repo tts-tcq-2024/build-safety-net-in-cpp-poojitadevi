@@ -27,5 +27,5 @@ TEST_F(SoundexTest, HandlesAllZeroCodes) {
 }
 
 TEST_F(SoundexTest, HandlesAllCodeCharacters) {
-    EXPECT_EQ(soundex.generateCode("Scientist"), "S243");
+    EXPECT_EQ(soundex.generateCode("Scientist"), "S253");
 }
