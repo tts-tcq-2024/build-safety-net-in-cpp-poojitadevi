@@ -7,11 +7,11 @@ protected:
 };
 
 TEST_F(SoundexTest, HandlesEmptyString) {
-    EXPECT_EQ(soundex.generateSoundexCode(""), "");
+    EXPECT_EQ(soundex.generateCode(""), "");
 }
 
 TEST_F(SoundexTest, HandlesSingleCharacter) {
-    EXPECT_EQ(soundex.generateSoundexCode("A"), "A000");
+    EXPECT_EQ(soundex.generateCode("A"), "A000");
 }
 
 //TEST_F(SoundexTest, HandlesLessThanFourCharacters) {
