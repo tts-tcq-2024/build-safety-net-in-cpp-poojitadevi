@@ -3,9 +3,10 @@
 #include <unordered_map>
 
 std::string Soundex::generate(const std::string& name) const {
-    // Return default Soundex code for an empty input
-    if (name.empty()) return "";
-
+   // Check for empty name using the new method
+    std::string result = handleEmptyName(name);
+    if (!result.empty()) return result;
+    
     // Initialize the Soundex code with the first letter
     std::string soundex(1, toupper(name[0]));
     char prevCode = getCode(soundex[0]);
@@ -22,8 +23,8 @@ std::string Soundex::generate(const std::string& name) const {
         if (soundex.length() == 4) break;
     }
 
-    // Pad with '0' to ensure the Soundex code is exactly 4 characters long
-    return soundex + std::string(4 - soundex.length(), '0');
+ // Apply padding to ensure the Soundex code is exactly 4 characters long
+    return applyPadding(soundex);
 }
 char Soundex::getCode(char c) const {
     // Create a static map for character to Soundex code mapping
@@ -42,4 +43,12 @@ char Soundex::getCode(char c) const {
     // Find the character in the map and return the corresponding Soundex code
     auto it = soundexMap.find(c);
     return (it != soundexMap.end()) ? it->second : '0'; // Return '0' if character is not found
+}
+std::string Soundex::handleEmptyName(const std::string& name) const {
+    return name.empty() ? "0000" : "";
+}
+
+std::string Soundex::applyPadding(const std::string& soundex) const {
+    // Return the soundex with padding if needed
+    return soundex.length() < 4 ? soundex + std::string(4 - soundex.length(), '0') : soundex;
 }
