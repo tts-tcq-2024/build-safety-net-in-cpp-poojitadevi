@@ -45,3 +45,11 @@ TEST_F(SoundexTest, HandlesAllCodeCharacters3) {
 TEST_F(SoundexTest, HandlesAllCodeCharacters4) {
     EXPECT_EQ(soundex.generateCode("Gorgeous"), "G620");
 }
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters5) {
+    EXPECT_EQ(soundex.generateCode("bpztlmr"), "B123");
+}
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters6) {
+    EXPECT_EQ(soundex.generateCode("Almr"), "A456");
+}
