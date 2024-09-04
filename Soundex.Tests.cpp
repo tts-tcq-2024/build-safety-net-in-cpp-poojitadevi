@@ -37,3 +37,11 @@ TEST_F(SoundexTest, HandlesRepititiveCharacters) {
 TEST_F(SoundexTest, HandlesAllCodeCharacters2) {
     EXPECT_EQ(soundex.generateCode("Tracking"), "T625");
 }
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters3) {
+    EXPECT_EQ(soundex.generateCode("Lolipop"), "L100");
+}
+
+TEST_F(SoundexTest, HandlesAllCodeCharacters4) {
+    EXPECT_EQ(soundex.generateCode("Gorgeous"), "G620");
+}
