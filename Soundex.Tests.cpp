@@ -1,55 +1,61 @@
 #include <gtest/gtest.h>
 #include "Soundex.h"
+#include <tuple>
 
-class SoundexTest : public ::testing::Test {
-protected:
-    Soundex soundex;
-};
+class SoundexParameterizedTest : public ::testing::TestWithParam<std::tuple<std::string, std::string>> {};
 
-TEST_F(SoundexTest, HandlesEmptyString) {
-    EXPECT_EQ(soundex.generateCode(""), "");
+TEST_P(SoundexParameterizedTest, GeneratesCorrectSoundexCode) {
+    
+    std::string name = std::get<0>(GetParam());
+    std::string expected = std::get<1>(GetParam());
+    
+    
+    EXPECT_EQ(generateSoundex(name), expected);
+}
+INSTANTIATE_TEST_SUITE_P(
+    SoundexTests,                       
+    SoundexParameterizedTest,           
+    ::testing::Values(
+        std::make_tuple("Robert", "R163"),
+        std::make_tuple("Rupert", "R163"),
+        std::make_tuple("Rubin", "R150"),
+        std::make_tuple("Aeiouhw", "A000"),
+        std::make_tuple("Ashcroft", "A261"),
+        std::make_tuple("Pfister", "P236"),
+        std::make_tuple("Honeyman", "H555")
+    )
+);
+
+TEST(SoundexTest, ReturnsEmptyForEmptyString) {
+    EXPECT_EQ(generateSoundex(""), "");
 }
 
-TEST_F(SoundexTest, HandlesSingleCharacter) {
-    EXPECT_EQ(soundex.generateCode("A"), "A000");
-}
+TEST_P(SoundexParameterizedTest, PadsShortNamesWithZeros) {
+    std::string name = std::get<0>(GetParam());
+    std::string expected = std::get<1>(GetParam());
 
-TEST_F(SoundexTest, HandlesLessThreeCharactersCode) {
-    EXPECT_EQ(soundex.generateCode("Bounce"), "B520");
+    EXPECT_EQ(generateSoundex(name), expected);
 }
+INSTANTIATE_TEST_SUITE_P(
+    ShortNamesTest,                     
+    SoundexParameterizedTest,           
+    ::testing::Values(
+        std::make_tuple("Ra", "R000"),
+        std::make_tuple("R", "R000")
+    )
+);
 
-TEST_F(SoundexTest, HandlesThreeCharacters) {
-    EXPECT_EQ(soundex.generateCode("Bat"), "B300");
-}
+TEST_P(SoundexParameterizedTest, CaseInsensitive) {
+    std::string name1 = std::get<0>(GetParam());
+    std::string name2 = std::get<1>(GetParam());
 
-TEST_F(SoundexTest, HandlesAllZeroCodes) {
-    EXPECT_EQ(soundex.generateCode("Who"), "W000");
+    EXPECT_EQ(generateSoundex(name1), generateSoundex(name2));
 }
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters1) {
-    EXPECT_EQ(soundex.generateCode("Smart"), "S563");
-}
-
-TEST_F(SoundexTest, HandlesRepititiveCharacters) {
-    EXPECT_EQ(soundex.generateCode("Assessment"), "A253");
-}
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters2) {
-    EXPECT_EQ(soundex.generateCode("Tracking"), "T625");
-}
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters3) {
-    EXPECT_EQ(soundex.generateCode("Lolipop"), "L100");
-}
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters4) {
-    EXPECT_EQ(soundex.generateCode("Gorgeous"), "G620");
-}
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters5) {
-    EXPECT_EQ(soundex.generateCode("rpztlmr"), "R123");
-}
-
-TEST_F(SoundexTest, HandlesAllCodeCharacters6) {
-    EXPECT_EQ(soundex.generateCode("Almr"), "A456");
-}
+INSTANTIATE_TEST_SUITE_P(
+    CaseInsensitiveTest,                
+    SoundexParameterizedTest,           
+    ::testing::Values(
+        std::make_tuple("Rupert", "RUPERT"),
+        std::make_tuple("Rubin", "RUBIN")
+    )
+);
