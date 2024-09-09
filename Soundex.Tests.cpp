@@ -10,7 +10,7 @@ TEST_P(SoundexParameterizedTest, GeneratesCorrectSoundexCode) {
     std::string expected = std::get<1>(GetParam());
     
     
-    EXPECT_EQ(generateSoundex(name), expected);
+    EXPECT_EQ(generateCode(name), expected);
 }
 INSTANTIATE_TEST_SUITE_P(
     SoundexTests,                       
@@ -27,14 +27,14 @@ INSTANTIATE_TEST_SUITE_P(
 );
 
 TEST(SoundexTest, ReturnsEmptyForEmptyString) {
-    EXPECT_EQ(generateSoundex(""), "");
+    EXPECT_EQ(generateCode(""), "");
 }
 
 TEST_P(SoundexParameterizedTest, PadsShortNamesWithZeros) {
     std::string name = std::get<0>(GetParam());
     std::string expected = std::get<1>(GetParam());
 
-    EXPECT_EQ(generateSoundex(name), expected);
+    EXPECT_EQ(generateCode(name), expected);
 }
 INSTANTIATE_TEST_SUITE_P(
     ShortNamesTest,                     
@@ -49,7 +49,7 @@ TEST_P(SoundexParameterizedTest, CaseInsensitive) {
     std::string name1 = std::get<0>(GetParam());
     std::string name2 = std::get<1>(GetParam());
 
-    EXPECT_EQ(generateSoundex(name1), generateSoundex(name2));
+    EXPECT_EQ(generateCode(name1), generateCode(name2));
 }
 INSTANTIATE_TEST_SUITE_P(
     CaseInsensitiveTest,                
