@@ -59,6 +59,5 @@ TEST(SoundexTest, HandleNumberAndString) {
      EXPECT_EQ(generateCode("6630fht"), "6130");
     EXPECT_EQ(generateCode("6630aei"), "6000");
     EXPECT_EQ(generateCode("6630hwy"), "6000");
-    EXPECT_EQ(generateCode("6630Aj#$f"), "6210");
-    
+    EXPECT_EQ(generateCode("6630Aj#$f"), "6210");  
 }
