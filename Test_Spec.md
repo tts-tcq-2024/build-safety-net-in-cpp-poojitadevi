@@ -1,4 +1,4 @@
-Test Items
+*Test Items*
 The item under test is the generateSoundex function, which is responsible for converting a given name into its corresponding Soundex code.
 
 Test Scope
