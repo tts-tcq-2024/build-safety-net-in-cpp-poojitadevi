@@ -45,7 +45,7 @@ TEST(SoundexTest, HandlesAdjacentIdenticalConsonants) {
 
 // Test cases for handling long names requiring truncation
 TEST(SoundexTest, TruncatesLongNamesCorrectly) {
-    EXPECT_EQ(generateSoundex("Albuquerque"), "A421");
+    EXPECT_EQ(generateSoundex("Albuquerque"), "A412");
     EXPECT_EQ(generateSoundex("Washington"), "W252");
     EXPECT_EQ(generateSoundex("Katherine"), "K365");
     EXPECT_EQ(generateSoundex("Christopher"), "C623");
@@ -58,12 +58,12 @@ TEST(SoundexTest, TruncatesLongNamesCorrectly) {
     EXPECT_EQ(generateSoundex("abcdefghijklmnopqrstuvwxyz"), "A123");
     EXPECT_EQ(generateSoundex("ChriStopheR"), "C623");
     EXPECT_EQ(generateSoundex("12345"), "1000");
-    EXPECT_EQ(generateSoundex("!@#$%"), "0000");
+    EXPECT_EQ(generateSoundex("!@#$%"), "!000");
 }
 
 // Test cases for handling names with hyphens or spaces
 TEST(SoundexTest, HandlesHyphenatedAndSpacedNames) {
-    EXPECT_EQ(generateSoundex("Jean-Luc Picard"), "J452");
+    EXPECT_EQ(generateSoundex("Jean-Luc Picard"), "J542");
     EXPECT_EQ(generateSoundex("Mary-Jane Watson"), "M625");
     EXPECT_EQ(generateSoundex("Peter Parker"), "P361");
     EXPECT_EQ(generateSoundex("Bruce Wayne"), "B625");
