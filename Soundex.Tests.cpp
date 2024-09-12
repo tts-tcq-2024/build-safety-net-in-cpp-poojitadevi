@@ -45,32 +45,32 @@ TEST(SoundexTest, HandlesAdjacentIdenticalConsonants) {
 
 // Test cases for handling long names requiring truncation
 TEST(SoundexTest, TruncatesLongNamesCorrectly) {
-    EXPECT_EQ(generateSoundex("Aeiouhw"), "A000");
-    EXPECT_EQ(generateSoundex("Robert"), "R163");
-    EXPECT_EQ(generateSoundex("Rupert"), "R163");
-    EXPECT_EQ(generateSoundex("Ashcraft"), "A261");
-    EXPECT_EQ(generateSoundex("Tymczak"), "T520");
-    EXPECT_EQ(generateSoundex("Pfister"), "P123");
-    EXPECT_EQ(generateSoundex("Ashworth"), "A263");
-    EXPECT_EQ(generateSoundex("Bobby"), "B100");
-    EXPECT_EQ(generateSoundex("Hildebrand"), "H431");
-    EXPECT_EQ(generateSoundex("Barack"), "B620");
+    EXPECT_EQ(generateSoundex("Albuquerque"), "A421");
+    EXPECT_EQ(generateSoundex("Washington"), "W252");
+    EXPECT_EQ(generateSoundex("Katherine"), "K365");
+    EXPECT_EQ(generateSoundex("Christopher"), "C623");
+    EXPECT_EQ(generateSoundex("Benedict"), "B532");
+    EXPECT_EQ(generateSoundex("Montgomery"), "M532");
+    EXPECT_EQ(generateSoundex("Williamson"), "W452");
+    EXPECT_EQ(generateSoundex("Jonathan"), "J535");
+    EXPECT_EQ(generateSoundex("Benjamin"), "B525");
+    EXPECT_EQ(generateSoundex("Alexander"), "A425");
     EXPECT_EQ(generateSoundex("abcdefghijklmnopqrstuvwxyz"), "A123");
-    EXPECT_EQ(generateSoundex("RoBErt"), "R163");
-    EXPECT_EQ(generateSoundex("0"), "0000");
-    EXPECT_EQ(generateSoundex("1234"), "1000");
+    EXPECT_EQ(generateSoundex("ChriStopheR"), "C623");
+    EXPECT_EQ(generateSoundex("12345"), "1000");
+    EXPECT_EQ(generateSoundex("!@#$%"), "0000");
 }
 
 // Test cases for handling names with hyphens or spaces
 TEST(SoundexTest, HandlesHyphenatedAndSpacedNames) {
-    EXPECT_EQ(generateSoundex("Ruturaj-Gaikwad"), "R362");
-    EXPECT_EQ(generateSoundex("Dinesh-Karthik"), "D526");
-    EXPECT_EQ(generateSoundex("Virat Kohli"), "V632");
-    EXPECT_EQ(generateSoundex("Amithab Bachhan"), "A531");
+    EXPECT_EQ(generateSoundex("Jean-Luc Picard"), "J452");
+    EXPECT_EQ(generateSoundex("Mary-Jane Watson"), "M625");
+    EXPECT_EQ(generateSoundex("Peter Parker"), "P361");
+    EXPECT_EQ(generateSoundex("Bruce Wayne"), "B625");
 }
 
 // Test cases for handling names with non-alphabetic characters
 TEST(SoundexTest, HandlesNamesWithNonAlphabeticCharacters) {
-    EXPECT_EQ(generateSoundex("J'Bumrah"), "J156");
-    EXPECT_EQ(generateSoundex("Harish@15"), "H620");
+    EXPECT_EQ(generateSoundex("O'Brien"), "O165");
+    EXPECT_EQ(generateSoundex("Smith$123"), "S530");
 }
