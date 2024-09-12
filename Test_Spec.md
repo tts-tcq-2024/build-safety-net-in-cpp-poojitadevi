@@ -2,6 +2,8 @@ Test Items
 The item under test is the generateSoundex function, which is responsible for converting a given name into its corresponding Soundex code.
 
 Test Scope
+
+
 The tests cover:
 Handling of empty strings
 Single character input
@@ -12,6 +14,7 @@ Names with hyphens or spaces
 Names with non-alphabetic characters
 
 Test Cases
+
 Test Case 1: Handling of Empty Strings 
 Test ID: TC01
 Objective: Ensure the function correctly handles an empty string.
