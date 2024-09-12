@@ -42,18 +42,18 @@ Expected Output: Correct Soundex code with a single digit for the consonant (e.g
 **Test Case 5:** Handling of Long Names <br>
 Test ID: TC05 <br>
 Objective: Ensure the function correctly truncates long names to produce a four-character Soundex code. <br>
-Input: Various long names (e.g., "Ashcraft", "Tymczak") <br>
-Expected Output: Correct four-character Soundex code (e.g., "Ashcraft" -> "A261")
+Input: Various long names (e.g., "Albuquerque", "Washington") <br>
+Expected Output: Correct four-character Soundex code (e.g., "Albuquerque" -> "A421")
 
 **Test Case 6:** Names with Hyphens or Spaces <br>
 Test ID: TC06 <br>
 Objective: Ensure the function handles names with hyphens or spaces correctly, generating the proper Soundex code. <br>
-Input: Names with hyphens and spaces (e.g., "Ruturaj-Gaikwad", "Virat Kohli") <br>
-Expected Output: Correct Soundex code (e.g., "Virat Kohli" -> "V632")
+Input: Names with hyphens and spaces (e.g., "Jean-Luc Picard", "Bruce Wayne") <br>
+Expected Output: Correct Soundex code (e.g., "Jean-Luc Picard" -> "J452")
 
 **Test Case 7:** Names with Non-Alphabetic Characters <br>
 Test ID: TC07 <br>
 Objective: Ensure the function correctly handles names that contain non-alphabetic characters, ignoring them when generating the Soundex code. <br>
-Input: Names with non-alphabetic characters (e.g., "J'Bumrah", "Harish@15") <br>
-Expected Output: Correct Soundex code ignoring non-alphabetic characters (e.g., "J'Bumrah" -> "J156") <br>
+Input: Names with non-alphabetic characters (e.g., "O'Brien", "O'Brien") <br>
+Expected Output: Correct Soundex code ignoring non-alphabetic characters (e.g., "O'Brien" -> "O165") <br>
 
