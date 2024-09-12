@@ -12,7 +12,7 @@ Names with hyphens or spaces
 Names with non-alphabetic characters
 
 Test Cases
-Test Case 1: Handling of Empty Strings
+Test Case 1: Handling of Empty Strings 
 Test ID: TC01
 Objective: Ensure the function correctly handles an empty string.
 Input: "" (empty string)
