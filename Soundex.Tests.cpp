@@ -14,7 +14,6 @@ TEST(SoundexTest, HandlesSingleCharacter) {
     }
 }
 
-
 // Test cases for the names with vowels and certain consonants that should be ignored
 TEST(SoundexTest, HandlesIgnoredCharacters) {
     std::vector<std::pair<std::string, std::string>> testCases = {
