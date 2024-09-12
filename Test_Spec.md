@@ -1,10 +1,10 @@
-*Test Items*
+**Test Items**
+
 The item under test is the generateSoundex function, which is responsible for converting a given name into its corresponding Soundex code.
 
-Test Scope
+**Test Scope**
 
-
-The tests cover:
+**The tests cover:** <br>
 Handling of empty strings
 Single character input
 Input with vowels and specific consonants that should be ignored
